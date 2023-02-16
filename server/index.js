@@ -17,6 +17,10 @@ import {register} from "./controllers/auth.js"
 import {createPost} from "./controllers/posts.js"
 import { verifyToken } from "./middleware/auth.js";
 
+// Dummy data
+import Post from "./models/Post.js";
+import User from "./models/User.js";
+import {users,posts} from "./data/index.js";
 
 //Configuration
 
@@ -68,5 +72,9 @@ mongoose.connect(process.env.MONGO_URL,{
 })
 .then(()=>{
     app.listen(PORT,()=>console.log(`Server Port: ${PORT}`));
+
+    //Inserting dummy data only for the first time
+    //User.insertMany(users);
+    //Post.insertMany(posts);
 })
 .catch((error)=>console.log(`${error} unable to connect`));
